@@ -6,3 +6,5 @@ docker.io/tensorchord/pgvecto-rs:pg14-v0.2.0@sha256:90724186f0a3517cf6914295b5ab
 mayanghua/instock:latest
 #支持指定架构
 #--platform=linux/arm64 xiaoyaliu/alist
+--platform=linux/arm64 eMUQI/baidunetdisk-arm64-vnc
+--platform=linux/arm64 jlesage/docker-baseimage-gui
