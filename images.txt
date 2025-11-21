@@ -1,7 +1,5 @@
 #支持私库
 #支持指定架构
 #--platform=linux/arm64 xiaoyaliu/alist
-tonistiigi/binfmt:latest
---platform=linux/arm64 jlesage/baseimage-gui:debian-12-v4.9.0
+--platform=linux/arm64 johngong/baidunetdisk:latest
 --platform=linux/arm64 emuqi/baidunetdisk-arm64-vnc:latest
---platform=linux/arm64 dockerguiimages/docker-baidunetdisk:latest-arm64
