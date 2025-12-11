@@ -1,5 +1,5 @@
 #支持私库
 #支持指定架构
 #--platform=linux/arm64 xiaoyaliu/alist
---platform=linux/arm64 johngong/baidunetdisk:latest
 onlyoffice/documentserver:latest
+valkey/valkey:8-bookworm
