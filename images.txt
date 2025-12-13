@@ -1,4 +1,5 @@
 #支持私库
+authelia/authelia:latest
 ghcr.io/immich-app/immich-server:release
 ghcr.io/immich-app/immich-machine-learning:release
 ghcr.io/immich-app/immich-machine-learning:release-openvino
