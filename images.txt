@@ -3,9 +3,8 @@ authelia/authelia:latest
 ghcr.io/immich-app/immich-server:release
 ghcr.io/immich-app/immich-machine-learning:release
 ghcr.io/immich-app/immich-machine-learning:release-openvino
-ghcr.io/tonc/nllb-clip-large-siglip__v1:latest
-ghcr.io/tonc/immich_model-cache:latest
-ghcr.nju.edu.cn/tonc/immich-geodata-cn:latest
+docker.cnb.cool/rakin/immich/immich_model-cache:latest
+docker.cnb.cool/rakin/immich/immich-geodata-cn:latest
 #支持指定架构
 #--platform=linux/arm64 xiaoyaliu/alist
 onlyoffice/documentserver:latest
