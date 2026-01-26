@@ -62,4 +62,4 @@ jobs:
           linux/amd64
         push: true
         tags: |
-          ${{ secrets.ALIYUN_REGISTRY }}/${{ secrets.ALIYUN_NAME_SPACE }}/nllb-clip-large-siglip__v1:latest
+          ${{ secrets.ALIYUN_REGISTRY }}/${{ secrets.ALIYUN_NAME_SPACE }}/immich-app-models:latest
