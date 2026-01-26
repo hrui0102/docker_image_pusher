@@ -4,7 +4,13 @@ on:
   workflow_dispatch: # 手动触发
   schedule:
     - cron: "33 5 * * 5"
-
+    
+env:
+  ALIYUN_REGISTRY: "${{ secrets.ALIYUN_REGISTRY }}"
+  ALIYUN_NAME_SPACE: "${{ secrets.ALIYUN_NAME_SPACE }}"
+  ALIYUN_REGISTRY_USER: "${{ secrets.ALIYUN_REGISTRY_USER }}"
+  ALIYUN_REGISTRY_PASSWORD: "${{ secrets.ALIYUN_REGISTRY_PASSWORD }}"
+  
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -35,7 +41,7 @@ jobs:
 
     # 登录到 cnb
     - name: 登录到 aliyun
-      run:
+      run: |
           docker login -u $ALIYUN_REGISTRY_USER -p $ALIYUN_REGISTRY_PASSWORD $ALIYUN_REGISTRY
 
 
