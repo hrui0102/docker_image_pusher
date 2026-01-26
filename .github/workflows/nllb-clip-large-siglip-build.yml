@@ -60,4 +60,4 @@ jobs:
           linux/amd64
         push: true
         tags: |
-          $ALIYUN_REGISTRY/git-hh/nllb-clip-large-siglip__v1:latest
+          ${{ secrets.ALIYUN_REGISTRY }}/git-hh/nllb-clip-large-siglip__v1:latest
