@@ -57,7 +57,7 @@ jobs:
       uses: docker/build-push-action@v4
       with:
         context: .
-        file: nllb-clip-large-siglip.yml
+        file: immich-model.yml
         platforms: |
           linux/amd64
         push: true
