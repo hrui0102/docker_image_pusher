@@ -1,1 +1,20 @@
+FROM debian:12 
 
+WORKDIR /opt
+
+# 安装 
+RUN apt-get install autoconf automake autotools-dev curl libmpc-dev \
+            libmpfr-dev libgmp-dev gawk build-essential bison flex texinfo \
+	        gperf libtool patchutils bc zlib1g-dev git libexpat1-dev && \
+    git clone https://github.com/YosysHQ/picorv32.git
+
+WORKDIR /opt/picorv32
+
+RUN make download-tools
+RUN make build-riscv32i-tools-bh
+RUN make build-riscv32ic-tools-bh
+RUN make build-riscv32im-tools-bh
+RUN make build-riscv32imc-tools-bh
+
+# 启动逻辑
+CMD ["tail -f /dev/null"]
