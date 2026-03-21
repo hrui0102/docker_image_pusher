@@ -1,12 +1,13 @@
+# 构建阶段
 FROM debian:12 
 
 WORKDIR /opt
 
 # 安装 
 RUN apt-get install autoconf automake autotools-dev curl libmpc-dev \
-            libmpfr-dev libgmp-dev gawk build-essential bison flex texinfo \
-	        gperf libtool patchutils bc zlib1g-dev git libexpat1-dev && \
-    git clone https://github.com/YosysHQ/picorv32.git
+  libmpfr-dev libgmp-dev gawk build-essential bison flex texinfo \
+  gperf libtool patchutils bc zlib1g-dev git libexpat1-dev && \
+  git clone https://github.com/YosysHQ/picorv32.git
 
 WORKDIR /opt/picorv32
 
