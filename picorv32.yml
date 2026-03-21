@@ -11,6 +11,7 @@ RUN apt-get update && apt-get install -y autoconf automake autotools-dev curl li
 
 WORKDIR /opt/picorv32
 
+RUN mkdir -p /opt/riscv32{i,ic,im,imc}
 RUN make download-tools
 RUN make build-riscv32i-tools-bh
 RUN make build-riscv32ic-tools-bh
