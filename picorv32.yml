@@ -9,14 +9,75 @@ RUN apt-get update && apt-get install -y autoconf automake autotools-dev curl li
   gperf libtool patchutils bc zlib1g-dev git libexpat1-dev sudo && \
   git clone https://github.com/YosysHQ/picorv32.git
 
+RUN mkdir -p /opt/riscv32{i,ic,im,imc}
+
 WORKDIR /opt/picorv32
 
-RUN mkdir -p /opt/riscv32{i,ic,im,imc}
 RUN make download-tools
-RUN make build-riscv32i-tools-bh
-RUN make build-riscv32ic-tools-bh
-RUN make build-riscv32im-tools-bh
-RUN make build-riscv32imc-tools-bh
+RUN git clone --reference /var/cache/distfiles/riscv-gnu-toolchain.git https://github.com/riscv/riscv-gnu-toolchain riscv-gnu-toolchain-riscv32i; 
+RUN git clone --reference /var/cache/distfiles/riscv-gnu-toolchain.git https://github.com/riscv/riscv-gnu-toolchain riscv-gnu-toolchain-riscv32ic; 
+RUN git clone --reference /var/cache/distfiles/riscv-gnu-toolchain.git https://github.com/riscv/riscv-gnu-toolchain riscv-gnu-toolchain-riscv32im; 
+RUN git clone --reference /var/cache/distfiles/riscv-gnu-toolchain.git https://github.com/riscv/riscv-gnu-toolchain riscv-gnu-toolchain-riscv32iimc; 
+
+## riscv32i
+WORKDIR /opt/picorv32/riscv-gnu-toolchain-riscv32i
+
+RUN git checkout 411d134; \
+RUN	git submodule update --init --reference /var/cache/distfiles/riscv-binutils-gdb.git riscv-binutils 
+RUN	git submodule update --init --reference /var/cache/distfiles/riscv-binutils-gdb.git riscv-gdb 
+RUN	git submodule update --init --reference /var/cache/distfiles/riscv-gcc.git riscv-gcc 
+RUN	git submodule update --init --reference /var/cache/distfiles/riscv-glibc.git riscv-glibc
+RUN	git submodule update --init --reference /var/cache/distfiles/riscv-newlib.git riscv-newlib
+RUN	mkdir build; 
+
+WORKDIR /opt/picorv32/riscv-gnu-toolchain-riscv32i/build
+
+RUN ../configure --with-arch=rv32i --prefix=/opt/riscv32i && make
+
+## riscv32ic
+WORKDIR /opt/picorv32/riscv-gnu-toolchain-riscv32ic
+
+RUN git checkout 411d134; \
+RUN	git submodule update --init --reference /var/cache/distfiles/riscv-binutils-gdb.git riscv-binutils 
+RUN	git submodule update --init --reference /var/cache/distfiles/riscv-binutils-gdb.git riscv-gdb 
+RUN	git submodule update --init --reference /var/cache/distfiles/riscv-gcc.git riscv-gcc 
+RUN	git submodule update --init --reference /var/cache/distfiles/riscv-glibc.git riscv-glibc
+RUN	git submodule update --init --reference /var/cache/distfiles/riscv-newlib.git riscv-newlib
+RUN	mkdir build; 
+
+WORKDIR /opt/picorv32/riscv-gnu-toolchain-riscv32ic/build
+
+RUN ../configure --with-arch=rv32ic --prefix=/opt/riscv32ic && make
+
+## riscv32im
+WORKDIR /opt/picorv32/riscv-gnu-toolchain-riscv32im
+
+RUN git checkout 411d134; \
+RUN	git submodule update --init --reference /var/cache/distfiles/riscv-binutils-gdb.git riscv-binutils 
+RUN	git submodule update --init --reference /var/cache/distfiles/riscv-binutils-gdb.git riscv-gdb 
+RUN	git submodule update --init --reference /var/cache/distfiles/riscv-gcc.git riscv-gcc 
+RUN	git submodule update --init --reference /var/cache/distfiles/riscv-glibc.git riscv-glibc
+RUN	git submodule update --init --reference /var/cache/distfiles/riscv-newlib.git riscv-newlib
+RUN	mkdir build; 
+
+WORKDIR /opt/picorv32/riscv-gnu-toolchain-riscv32im/build
+
+RUN ../configure --with-arch=rv32im --prefix=/opt/riscv32im && make
+
+## riscv32imc
+WORKDIR /opt/picorv32/riscv-gnu-toolchain-riscv32imc
+
+RUN git checkout 411d134; \
+RUN	git submodule update --init --reference /var/cache/distfiles/riscv-binutils-gdb.git riscv-binutils 
+RUN	git submodule update --init --reference /var/cache/distfiles/riscv-binutils-gdb.git riscv-gdb 
+RUN	git submodule update --init --reference /var/cache/distfiles/riscv-gcc.git riscv-gcc 
+RUN	git submodule update --init --reference /var/cache/distfiles/riscv-glibc.git riscv-glibc
+RUN	git submodule update --init --reference /var/cache/distfiles/riscv-newlib.git riscv-newlib
+RUN	mkdir build; 
+
+WORKDIR /opt/picorv32/riscv-gnu-toolchain-riscv32imc/build
+
+RUN ../configure --with-arch=rv32imc --prefix=/opt/riscv32imc && make
 
 # 启动逻辑
 CMD ["tail -f /dev/null"]
