@@ -32,7 +32,8 @@ RUN	mkdir build
 
 WORKDIR /opt/picorv32/riscv-gnu-toolchain-riscv32i/build
 
-RUN ../configure --with-arch=rv32i --prefix=/opt/riscv32i && make
+RUN ../configure --with-arch=rv32i --prefix=/opt/riscv32i 
+RUN make
 
 ## riscv32ic
 WORKDIR /opt/picorv32/riscv-gnu-toolchain-riscv32ic
@@ -47,7 +48,8 @@ RUN	mkdir build
 
 WORKDIR /opt/picorv32/riscv-gnu-toolchain-riscv32ic/build
 
-RUN ../configure --with-arch=rv32ic --prefix=/opt/riscv32ic && make
+RUN ../configure --with-arch=rv32ic --prefix=/opt/riscv32ic
+RUN make
 
 ## riscv32im
 WORKDIR /opt/picorv32/riscv-gnu-toolchain-riscv32im
@@ -62,7 +64,8 @@ RUN	mkdir build
 
 WORKDIR /opt/picorv32/riscv-gnu-toolchain-riscv32im/build
 
-RUN ../configure --with-arch=rv32im --prefix=/opt/riscv32im && make
+RUN ../configure --with-arch=rv32im --prefix=/opt/riscv32im 
+RUN make
 
 ## riscv32imc
 WORKDIR /opt/picorv32/riscv-gnu-toolchain-riscv32imc
@@ -77,7 +80,8 @@ RUN	mkdir build
 
 WORKDIR /opt/picorv32/riscv-gnu-toolchain-riscv32imc/build
 
-RUN ../configure --with-arch=rv32imc --prefix=/opt/riscv32imc && make
+RUN ../configure --with-arch=rv32imc --prefix=/opt/riscv32imc
+RUN make
 
 # 启动逻辑
 CMD ["tail -f /dev/null"]
