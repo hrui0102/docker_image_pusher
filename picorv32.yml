@@ -13,8 +13,6 @@ RUN mkdir -p /opt/riscv32{i,ic,im,imc}
 
 WORKDIR /opt/picorv32
 
-RUN mkdir -p /var/cache/distfiles
-RUN make download-tools
 RUN git clone --recursive https://github.com/riscv/riscv-gnu-toolchain riscv-gnu-toolchain-riscv32i
 RUN git clone --recursive https://github.com/riscv/riscv-gnu-toolchain riscv-gnu-toolchain-riscv32ic
 RUN git clone --recursive https://github.com/riscv/riscv-gnu-toolchain riscv-gnu-toolchain-riscv32im
