@@ -14,9 +14,9 @@ RUN mkdir -p /opt/riscv32{i,ic,im,imc}
 WORKDIR /opt/picorv32
 
 RUN git clone --recursive https://github.com/riscv/riscv-gnu-toolchain riscv-gnu-toolchain-riscv32i
-RUN git clone --recursive https://github.com/riscv/riscv-gnu-toolchain riscv-gnu-toolchain-riscv32ic
-RUN git clone --recursive https://github.com/riscv/riscv-gnu-toolchain riscv-gnu-toolchain-riscv32im
-RUN git clone --recursive https://github.com/riscv/riscv-gnu-toolchain riscv-gnu-toolchain-riscv32imc
+RUN cp -a riscv-gnu-toolchain-riscv32i riscv-gnu-toolchain-riscv32ic
+RUN cp -a riscv-gnu-toolchain-riscv32i riscv-gnu-toolchain-riscv32im
+RUN cp -a riscv-gnu-toolchain-riscv32i riscv-gnu-toolchain-riscv32imc
 RUN mkdir -p /opt/picorv32/riscv-gnu-toolchain-riscv32i/build
 RUN mkdir -p /opt/picorv32/riscv-gnu-toolchain-riscv32ic/build
 RUN mkdir -p /opt/picorv32/riscv-gnu-toolchain-riscv32im/build
