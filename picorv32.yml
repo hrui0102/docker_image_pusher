@@ -15,70 +15,34 @@ WORKDIR /opt/picorv32
 
 RUN mkdir -p /var/cache/distfiles
 RUN make download-tools
-RUN git clone --reference /var/cache/distfiles/riscv-gnu-toolchain.git https://github.com/riscv/riscv-gnu-toolchain riscv-gnu-toolchain-riscv32i
-RUN git clone --reference /var/cache/distfiles/riscv-gnu-toolchain.git https://github.com/riscv/riscv-gnu-toolchain riscv-gnu-toolchain-riscv32ic
-RUN git clone --reference /var/cache/distfiles/riscv-gnu-toolchain.git https://github.com/riscv/riscv-gnu-toolchain riscv-gnu-toolchain-riscv32im
-RUN git clone --reference /var/cache/distfiles/riscv-gnu-toolchain.git https://github.com/riscv/riscv-gnu-toolchain riscv-gnu-toolchain-riscv32iimc
+RUN git clone --recursive https://github.com/riscv/riscv-gnu-toolchain riscv-gnu-toolchain-riscv32i
+RUN git clone --recursive https://github.com/riscv/riscv-gnu-toolchain riscv-gnu-toolchain-riscv32ic
+RUN git clone --recursive https://github.com/riscv/riscv-gnu-toolchain riscv-gnu-toolchain-riscv32im
+RUN git clone --recursive https://github.com/riscv/riscv-gnu-toolchain riscv-gnu-toolchain-riscv32imc
+RUN mkdir -p /opt/picorv32/riscv-gnu-toolchain-riscv32i/build
+RUN mkdir -p /opt/picorv32/riscv-gnu-toolchain-riscv32ic/build
+RUN mkdir -p /opt/picorv32/riscv-gnu-toolchain-riscv32im/build
+RUN mkdir -p /opt/picorv32/riscv-gnu-toolchain-riscv32imc/build
 
 ## riscv32i
-WORKDIR /opt/picorv32/riscv-gnu-toolchain-riscv32i
-
-RUN git checkout master
-RUN	git submodule update --init --reference /var/cache/distfiles/riscv-binutils-gdb.git riscv-binutils 
-RUN	git submodule update --init --reference /var/cache/distfiles/riscv-binutils-gdb.git riscv-gdb 
-RUN	git submodule update --init --reference /var/cache/distfiles/riscv-gcc.git riscv-gcc 
-RUN	git submodule update --init --reference /var/cache/distfiles/riscv-glibc.git riscv-glibc
-RUN	git submodule update --init --reference /var/cache/distfiles/riscv-newlib.git riscv-newlib
-RUN	mkdir build
-
 WORKDIR /opt/picorv32/riscv-gnu-toolchain-riscv32i/build
 
 RUN ../configure --with-arch=rv32i --prefix=/opt/riscv32i 
 RUN make
 
 ## riscv32ic
-WORKDIR /opt/picorv32/riscv-gnu-toolchain-riscv32ic
-
-RUN git checkout master
-RUN	git submodule update --init --reference /var/cache/distfiles/riscv-binutils-gdb.git riscv-binutils 
-RUN	git submodule update --init --reference /var/cache/distfiles/riscv-binutils-gdb.git riscv-gdb 
-RUN	git submodule update --init --reference /var/cache/distfiles/riscv-gcc.git riscv-gcc 
-RUN	git submodule update --init --reference /var/cache/distfiles/riscv-glibc.git riscv-glibc
-RUN	git submodule update --init --reference /var/cache/distfiles/riscv-newlib.git riscv-newlib
-RUN	mkdir build
-
 WORKDIR /opt/picorv32/riscv-gnu-toolchain-riscv32ic/build
 
 RUN ../configure --with-arch=rv32ic --prefix=/opt/riscv32ic 
 RUN make
 
 ## riscv32im
-WORKDIR /opt/picorv32/riscv-gnu-toolchain-riscv32im
-
-RUN git checkout master
-RUN	git submodule update --init --reference /var/cache/distfiles/riscv-binutils-gdb.git riscv-binutils 
-RUN	git submodule update --init --reference /var/cache/distfiles/riscv-binutils-gdb.git riscv-gdb 
-RUN	git submodule update --init --reference /var/cache/distfiles/riscv-gcc.git riscv-gcc 
-RUN	git submodule update --init --reference /var/cache/distfiles/riscv-glibc.git riscv-glibc
-RUN	git submodule update --init --reference /var/cache/distfiles/riscv-newlib.git riscv-newlib
-RUN	mkdir build
-
 WORKDIR /opt/picorv32/riscv-gnu-toolchain-riscv32im/build
 
 RUN ../configure --with-arch=rv32im --prefix=/opt/riscv32im 
 RUN make
 
 ## riscv32imc
-WORKDIR /opt/picorv32/riscv-gnu-toolchain-riscv32imc
-
-RUN git checkout master
-RUN	git submodule update --init --reference /var/cache/distfiles/riscv-binutils-gdb.git riscv-binutils 
-RUN	git submodule update --init --reference /var/cache/distfiles/riscv-binutils-gdb.git riscv-gdb 
-RUN	git submodule update --init --reference /var/cache/distfiles/riscv-gcc.git riscv-gcc 
-RUN	git submodule update --init --reference /var/cache/distfiles/riscv-glibc.git riscv-glibc
-RUN	git submodule update --init --reference /var/cache/distfiles/riscv-newlib.git riscv-newlib
-RUN	mkdir build
-
 WORKDIR /opt/picorv32/riscv-gnu-toolchain-riscv32imc/build
 
 RUN ../configure --with-arch=rv32imc --prefix=/opt/riscv32imc 
