@@ -4,7 +4,7 @@ FROM debian:12
 WORKDIR /opt
 
 # 安装 
-RUN apt-get update && apt-get install -y autoconf automake autotools-dev curl libmpc-dev \
+RUN apt-get update && apt-get install -y grub2 kernel-image autoconf automake autotools-dev curl libmpc-dev \
   libmpfr-dev libgmp-dev gawk build-essential bison flex texinfo \
   gperf libtool patchutils bc zlib1g-dev git libexpat1-dev sudo && \
   git clone https://github.com/YosysHQ/picorv32.git
@@ -14,37 +14,6 @@ RUN mkdir -p /opt/riscv32{i,ic,im,imc}
 WORKDIR /opt/picorv32
 
 RUN git clone --recursive https://github.com/riscv/riscv-gnu-toolchain riscv-gnu-toolchain-riscv32i
-RUN cp -a riscv-gnu-toolchain-riscv32i riscv-gnu-toolchain-riscv32ic
-RUN cp -a riscv-gnu-toolchain-riscv32i riscv-gnu-toolchain-riscv32im
-RUN cp -a riscv-gnu-toolchain-riscv32i riscv-gnu-toolchain-riscv32imc
-RUN mkdir -p /opt/picorv32/riscv-gnu-toolchain-riscv32i/build
-RUN mkdir -p /opt/picorv32/riscv-gnu-toolchain-riscv32ic/build
-RUN mkdir -p /opt/picorv32/riscv-gnu-toolchain-riscv32im/build
-RUN mkdir -p /opt/picorv32/riscv-gnu-toolchain-riscv32imc/build
-
-## riscv32i
-WORKDIR /opt/picorv32/riscv-gnu-toolchain-riscv32i/build
-
-RUN ../configure --with-arch=rv32i --prefix=/opt/riscv32i 
-RUN make
-
-## riscv32ic
-WORKDIR /opt/picorv32/riscv-gnu-toolchain-riscv32ic/build
-
-RUN ../configure --with-arch=rv32ic --prefix=/opt/riscv32ic 
-RUN make
-
-## riscv32im
-WORKDIR /opt/picorv32/riscv-gnu-toolchain-riscv32im/build
-
-RUN ../configure --with-arch=rv32im --prefix=/opt/riscv32im 
-RUN make
-
-## riscv32imc
-WORKDIR /opt/picorv32/riscv-gnu-toolchain-riscv32imc/build
-
-RUN ../configure --with-arch=rv32imc --prefix=/opt/riscv32imc 
-RUN make
 
 # 启动逻辑
 CMD ["tail -f /dev/null"]
