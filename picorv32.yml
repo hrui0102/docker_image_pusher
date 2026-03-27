@@ -4,7 +4,7 @@ FROM debian:12
 WORKDIR /opt
 
 # 安装 
-RUN apt-get update && apt-get install -y grub2 linux-image autoconf automake autotools-dev curl libmpc-dev \
+RUN apt-get update && apt-get install -y grub2 linux-image-amd64 autoconf automake autotools-dev curl libmpc-dev \
   libmpfr-dev libgmp-dev gawk build-essential bison flex texinfo \
   gperf libtool patchutils bc zlib1g-dev git libexpat1-dev sudo && \
   git clone https://github.com/YosysHQ/picorv32.git
