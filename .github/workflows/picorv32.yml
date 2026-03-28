@@ -60,4 +60,4 @@ jobs:
           linux/amd64
         push: true
         tags: |
-          ${{ secrets.ALIYUN_REGISTRY }}/${{ secrets.ALIYUN_NAME_SPACE }}/immich-app-models:latest
+          ${{ secrets.ALIYUN_REGISTRY }}/${{ secrets.ALIYUN_NAME_SPACE }}/picorv32:latest
